@@ -11,7 +11,7 @@ console.log(req.cookies.token)
     : req.cookies.token; // Check if token is available in cookies
 
   if (!token) {
-    return res.status(401).json({ message: "Authorization token is required" });
+    return res.status(401).json({ message: "Login is required" });
   }
 
   try {

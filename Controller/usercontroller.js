@@ -5,26 +5,37 @@ const verifyToken=require("../Utils/tokenverify")
 
 exports.usersignup = async (req, res, next) => {
     const { email, password } = req.body;
-    console.log(email, password, "dfygsudj");
+    const avtar = req.file ? req.file.filename : null; // Ensure file exists, and get filename
+
+   
 
     try {
+        // Validate inputs
         if (!email || !password) {
-            return res.status(400).json({ message: "Please fulfill the input" }); // Fixed typo and status code
+            return res.status(400).json({ message: "Please provide all required fields" });
         }
 
-        const matchData = await User.findOne({ email });
-        if (matchData) {
-            return res.status(402).json({ message: "User already exists" }); // Fixed status code
+        // Check if user already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(409).json({ message: "User already exists" }); // Conflict status
         }
 
+        // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Create new user
-        const newUser = new User({ email, password: hashedPassword });
+        // Create new user with the provided avatar (if any)
+        const newUser = new User({ 
+            email, 
+            password: hashedPassword,
+            avtar // Avatar filename
+        });
+    
         await newUser.save();
 
-        return res.status(200).json({ message: "User successfully signed up" });
+        return res.status(201).json({ message: "User successfully signed up" }); // 201 for created
     } catch (error) {
+        console.error(error); // Log the error for debugging
         return res.status(500).json({ message: "Server error while creating user" });
     }
 };
@@ -61,7 +72,7 @@ exports.userlogin = async (req, res, next) => {
         return res.cookie('token', token, {  
             httpOnly: true,  
             // secure: process.env.NODE_ENV === 'production', // Uncomment for production
-            sameSite: 'None',  
+            sameSite: 'strict',  
             maxAge: 3600000 // 1 hour  
         }).status(200).json({ message: "Login successful" }) 
         
@@ -74,6 +85,8 @@ exports.userlogin = async (req, res, next) => {
 // get profile information
 
 exports.getprofile = async (req, res) => {
+
+  
     try {
       const user = await User.findById(req.user); // Use req.user, set by the authorization middleware
   
@@ -93,7 +106,13 @@ exports.getprofile = async (req, res) => {
 
   //-------logout------
 
-  exports.userlogout=(req,res,next)=>{
-    res.clearCookie('token');
-    res.status(200).json({message:"logout successful"})
-  }
+  exports.userlogout = (req, res, next) => {
+    res.clearCookie('token', {
+        httpOnly: true,
+        // secure: process.env.NODE_ENV === 'production', // Uncomment for production
+        sameSite: 'strict',
+        path: '/' // Ensure the path matches the one used when setting the cookie
+    });
+    res.status(200).json({ message: "Logout successful" });
+}
+

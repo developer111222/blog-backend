@@ -8,6 +8,7 @@ const userschema = new Schema({
     required: true,
   },
   password: { type: String, required: true },
+  avtar:{ type: String,required: true},
   role: { type: String, required: true, enum: ["user", "admin"], default: "user" }
 }, { timestamps: true });  // Enable timestamps
 
