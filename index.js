@@ -24,7 +24,7 @@ const corsOptions = {
 
    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
    Headers: true,
-    exposedHeaders: "Set-Cookie",
+  
     methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"], // Allow only specified HTTP methods
     allowedHeaders: [
       "Access-Control-Allow-Origin",
