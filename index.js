@@ -20,7 +20,7 @@ app.use(cookieParser());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000',  // The URL of your frontend (adjust as necessary)
+    origin: 'https://blog-frontend-eight-rosy.vercel.app/',  // The URL of your frontend (adjust as necessary)
     credentials: true,  // This is necessary for allowing cookies to be sent
   },
 });
