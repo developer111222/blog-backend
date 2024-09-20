@@ -23,13 +23,16 @@ const corsOptions = {
   origin: 'https://blog-frontend-eight-rosy.vercel.app/',  // The URL of your frontend
   credentials: true,  // Necessary for allowing cookies to be sent
    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
-  header:true,
+  Headers:true,
     allowedHeaders: [
       "Access-Control-Allow-Origin",
       "Content-Type",
       "Authorization",
       "cookies",
     ],
+      optionsSuccessStatus: 200,
+    preflightContinue: false,
+
 };
 
 // Apply CORS middleware globally
