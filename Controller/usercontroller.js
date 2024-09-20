@@ -71,7 +71,7 @@ exports.userlogin = async (req, res, next) => {
         // Set cookie and respond  
         return res.cookie('token', token, {  
             httpOnly: true,  
-            // secure: process.env.NODE_ENV === 'production', // Uncomment for production
+            secure: process.env.NODE_ENV === 'production' || true, // Uncomment for production
             sameSite: 'strict',  
             maxAge: 3600000 // 1 hour  
         }).status(200).json({ message: "Login successful" }) 
