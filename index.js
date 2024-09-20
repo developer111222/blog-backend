@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 // CORS options
 const corsOptions = {
-  origin: 'https://blog-frontend-eight-rosy.vercel.app/',  // The URL of your frontend
+  origin: '*',  // The URL of your frontend
   credentials: true,  // Necessary for allowing cookies to be sent
    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
   Headers:true,
