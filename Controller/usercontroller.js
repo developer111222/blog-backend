@@ -71,9 +71,12 @@ exports.userlogin = async (req, res, next) => {
         // Set cookie and respond  
         return res.cookie('token', token, {  
             httpOnly: true,  
-            secure: process.env.NODE_ENV === 'production' || true, // Uncomment for production
-            sameSite: 'strict',  
-            maxAge: 3600000 // 1 hour  
+            path: "/", // cookie path
+        //   Domain: ".onrender.com", // domain for the cookie
+          secure: true, // accessible through HTTP
+          httpOnly: true, // only server can access the cookie
+          sameSite: "none", // enforcement type
+          partitioned: false, 
         }).status(200).json({ message: "Login successful" }) 
         
         // return res.status(200).json({ message: "Login successful" }); // Send a response  
