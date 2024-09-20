@@ -20,17 +20,20 @@ app.use(cookieParser());
 
 // CORS options
 const corsOptions = {
-  origin: '*',  // The URL of your frontend
-  credentials: true,  // Necessary for allowing cookies to be sent
+  origin: 'https://blog-frontend-eight-rosy.vercel.app',  // The URL of your frontend
+
    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
-  Headers:true,
+   Headers: true,
+    exposedHeaders: "Set-Cookie",
+    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"], // Allow only specified HTTP methods
     allowedHeaders: [
       "Access-Control-Allow-Origin",
       "Content-Type",
       "Authorization",
       "cookies",
     ],
-      optionsSuccessStatus: 200,
+    credentials: true, // Allow sending cookies and other credentials
+    optionsSuccessStatus: 200,
     preflightContinue: false,
 
 };
