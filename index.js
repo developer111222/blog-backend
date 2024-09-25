@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 // CORS options
 const corsOptions = {
-  origin: 'https://new-sooty-xi.vercel.app/',  // The URL of your frontend
+  origin: 'https://new-sooty-xi.vercel.app',  // The URL of your frontend
 
    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
    Headers: true,
@@ -75,7 +75,7 @@ const server = http.createServer(app);
 // Set up Socket.io with CORS
 const io = new Server(server, {
   cors: {
-    origin: 'https://blog-frontend-eight-rosy.vercel.app',  // Must match frontend URL
+    origin: 'https://new-sooty-xi.vercel.app',  // Must match frontend URL
     credentials: true,  // Necessary for allowing cookies over WebSocket
   },
 });
