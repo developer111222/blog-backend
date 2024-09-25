@@ -2,13 +2,19 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userschema = new Schema({
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  password: { type: String, required: true },
-  avtar:{ type: String,required: true},
+   googleId: {  
+        type: String,  
+        required: true,  
+    },  
+    displayName: {  
+        type: String,  
+    },  
+    email: {  
+        type: String,  
+    },  
+    picture: {  
+        type: String,  
+    }, 
   role: { type: String, required: true, enum: ["user", "admin"], default: "user" }
 }, { timestamps: true });  // Enable timestamps
 
