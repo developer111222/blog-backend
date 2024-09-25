@@ -15,7 +15,7 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
     console.log(req.body)
     const token = jwt.sign({ id: req.user.id }, 'kdhsfjfbndbfvnsdbfvsdnfbndb', { expiresIn: '1h' });  
     res.cookie('token', token, { httpOnly: true });  
-    res.redirect('http://localhost:3000'); // Redirect to your frontend or wherever you want  
+    res.redirect('https://new-sooty-xi.vercel.app/'); // Redirect to your frontend or wherever you want  
 });  
 
 // Extract user info  
