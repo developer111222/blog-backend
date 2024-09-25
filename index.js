@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config({ path: './Database/.env' }); // Adjust path if necessary
 const session = require('express-session');
-
+const passport = require('passport');
 const dbconnect = require('./Database/db'); // Path to your db connection module
 const userroute = require("./Route/userroute");
 const blogroute = require("./Route/blogroute");
