@@ -10,6 +10,7 @@ const blogroute = require("./Route/blogroute");
 const socketroute = require("./Route/socketroute");
 const userauthroute = require("./Route/userauthroute");
 const cookieParser = require('cookie-parser');
+const userauthcontroller=require("./Controller/userauthcontroller")
 const http = require('http');
 const { Server } = require('socket.io');
 
