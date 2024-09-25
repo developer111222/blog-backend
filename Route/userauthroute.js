@@ -13,7 +13,7 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), async (req, res) => {  
 
     console.log(req.body)
-    const token = jwt.sign({ id: req.user.id }, 'kdhsfjfbndbfvnsdbfvsdnfbndb', { expiresIn: '1h' });  
+    const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });  
     res.cookie('token', token, { httpOnly: true });  
     res.redirect('https://new-sooty-xi.vercel.app/'); // Redirect to your frontend or wherever you want  
 });  
