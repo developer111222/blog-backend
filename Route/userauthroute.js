@@ -15,7 +15,7 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
     console.log(req.body)
     const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });  
     res.cookie('token', token, { httpOnly: true });  
-    res.redirect('https://new-sooty-xi.vercel.app/'); // Redirect to your frontend or wherever you want  
+    res.redirect('https://blog-backend-1-u7c5.onrender.com'); // Redirect to your frontend or wherever you want  
 });  
 
 // Extract user info  
