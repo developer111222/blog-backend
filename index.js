@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 // CORS options
 const corsOptions = {
-  origin: 'https://new-sooty-xi.vercel.app',  // The URL of your frontend
+  origin: 'https://new-sooty-xi.vercel.app/',  // The URL of your frontend
 
    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
    Headers: true,
