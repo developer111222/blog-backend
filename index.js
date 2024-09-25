@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config({ path: './Database/.env' }); // Adjust path if necessary
+const session = require('express-session');
 
 const dbconnect = require('./Database/db'); // Path to your db connection module
 const userroute = require("./Route/userroute");
@@ -40,6 +41,17 @@ const corsOptions = {
 
 // Apply CORS middleware globally
 app.use(cors(corsOptions));
+
+
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'default_secret',  // Use env variable
+    resave: false,  // Prevent session resaving if not modified
+    saveUninitialized: false,  // Don't create session until something is stored
+    cookie: { secure: process.env.NODE_ENV === 'production' }  // Set to true if using HTTPS in production
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Middleware to parse JSON bodies
 app.use(express.json());
