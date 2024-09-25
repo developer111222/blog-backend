@@ -9,7 +9,7 @@ dotenv.config();
 passport.use(new GoogleStrategy({
     clientID:  process.env.GOOGLE_CLIENT_ID, // Make sure this is set in your .env
     clientSecret: process.env.GOOGLE_CLIENT_SECRET, // Ensure this is correct
-    callbackURL: '', // Replace with your correct URL
+    callbackURL: 'https://blog-backend-1-u7c5.onrender.com/api/auth/google/callback', // Replace with your correct URL
 },
 async (accessToken, refreshToken, profile, done) => {
     try {
