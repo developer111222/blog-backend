@@ -42,7 +42,7 @@ const corsOptions = {
 
 // Apply CORS middleware globally
 app.use(cors(corsOptions));
-
+app.use(express.json());
 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'default_secret',  // Use env variable
@@ -55,7 +55,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Middleware to parse JSON bodies
-app.use(express.json());
+
 
 // Connect to MongoDB
 dbconnect();
