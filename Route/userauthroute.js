@@ -14,7 +14,14 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
 
     console.log(req.body)
     const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });  
-    res.cookie('token', token, { httpOnly: true });  
+    res.cookie('token', token, {
+           httpOnly: true,  
+            path: "/", // cookie path
+        //   Domain: ".onrender.com", // domain for the cookie
+          secure: true, // accessible through HTTP
+          httpOnly: true, // only server can access the cookie
+          sameSite: "none", // enforcement type
+          partitioned: false, });  
     res.redirect('https://new-sooty-xi.vercel.app'); // Redirect to your frontend or wherever you want  
 });  
 
