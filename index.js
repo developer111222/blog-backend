@@ -61,6 +61,8 @@ app.use(passport.session());
 // Connect to MongoDB
 dbconnect();
 
+require("./Controller/userauthcontroller")
+
 // Route definitions (ensure paths are correct)
 app.use("/api/vi", userroute); // Removed extra slashes to ensure proper pathing
 app.use("/api/vi", blogroute);
