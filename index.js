@@ -8,6 +8,7 @@ const dbconnect = require('./Database/db'); // Path to your db connection module
 const userroute = require("./Route/userroute");
 const blogroute = require("./Route/blogroute");
 const socketroute = require("./Route/socketroute");
+const userauthroute = require("./Route/userauthroute");
 const cookieParser = require('cookie-parser');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -63,6 +64,7 @@ dbconnect();
 app.use("/api/vi", userroute); // Removed extra slashes to ensure proper pathing
 app.use("/api/vi", blogroute);
 app.use("/api/vi", socketroute);
+app.use('/api/auth', userauthroute); 
 
 // Create HTTP server for WebSocket integration
 const server = http.createServer(app);
